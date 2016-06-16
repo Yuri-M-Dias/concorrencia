@@ -36,7 +36,6 @@ public class Exercicio2 extends Thread {
             }
             System.out.println("Soma da linha " + i + " é " + soma);
         }
-
     }
 
     @Override
