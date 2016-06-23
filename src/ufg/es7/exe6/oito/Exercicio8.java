@@ -10,6 +10,7 @@ public class Exercicio8 {
         ArrayList<Lebre> threads = new ArrayList<>();
         for (int i = 1; i <= NUM_THREADS; i++) {
             Lebre lebre = new Lebre(20, String.valueOf(i));
+            lebre.setPriority(i);
             lebre.start();
             threads.add(lebre);
         }
@@ -19,9 +20,9 @@ public class Exercicio8 {
             thread.join();
             quemTerminou.add(Integer.valueOf(thread.getName()) - 1, thread.getExecutionTime());
         }
-        Long ganhador = quemTerminou.stream().max(Long::compare).get();
+        // Pega o com o menor tempo
+        Long ganhador = quemTerminou.stream().min(Long::compare).get();
         int indexGanhador = quemTerminou.indexOf(ganhador) + 1;
-        // TODO!
         System.out.println("Ganhador foi: " + indexGanhador);
     }
 
