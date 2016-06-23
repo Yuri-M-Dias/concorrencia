@@ -6,6 +6,9 @@ public class Exercicio8 {
 
     public static final int NUM_THREADS = 5;
 
+    private static ArrayList<Lebre> threadsTerminadas = new ArrayList<>();
+    private static int l = 0;
+
     public static void main(String[] args) throws InterruptedException {
         ArrayList<Lebre> threads = new ArrayList<>();
         for (int i = 1; i <= NUM_THREADS; i++) {
@@ -14,16 +17,17 @@ public class Exercicio8 {
             lebre.start();
             threads.add(lebre);
         }
-        ArrayList<Long> quemTerminou = new ArrayList<>();
-        // Espera todas terminar, jeito burro
         for (Lebre thread: threads) {
             thread.join();
-            quemTerminou.add(Integer.valueOf(thread.getName()) - 1, thread.getExecutionTime());
         }
-        // Pega o com o menor tempo
-        Long ganhador = quemTerminou.stream().min(Long::compare).get();
-        int indexGanhador = quemTerminou.indexOf(ganhador) + 1;
-        System.out.println("Ganhador foi: " + indexGanhador);
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Lebre: " + threadsTerminadas.get(i - 1).getName() + " no ranking: " + i);
+        }
+    }
+
+    public synchronized static void adicionaLista(Lebre lebre){
+        Exercicio8.threadsTerminadas.add(l, lebre);
+        l++;
     }
 
 }

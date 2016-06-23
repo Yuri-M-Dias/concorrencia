@@ -27,7 +27,7 @@ public class Lebre extends Thread {
         }
         long after = System.nanoTime();
         this.executionTime = after - before;
-        System.out.println("Lebre: " + Thread.currentThread().getName() + " terminou em " + this.executionTime);
+        Exercicio8.adicionaLista(this);
     }
 
     private void salta(){
