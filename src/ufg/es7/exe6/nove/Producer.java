@@ -15,8 +15,8 @@ public class Producer extends Thread {
     @Override
     public void run() {
         System.out.println("Iniciou: " + this.getName());
-        for (int i = 0; i < 50; i++) {
-            String message = "produto-" + i + "-" + this.getName();
+        while (true) {
+            String message = this.getName();
             try {
                 mailbox.storeMessage(message);
             } catch (InterruptedException e) {

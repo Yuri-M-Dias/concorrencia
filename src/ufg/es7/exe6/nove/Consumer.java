@@ -15,7 +15,7 @@ public class Consumer extends Thread {
     @Override
     public void run() {
         System.out.println("Iniciou: " + this.getName());
-        for (int i = 0; i < 50; i++) {
+        while (true) {
             String message = null;
             try {
                 message = mailbox.retrieveMessage();
