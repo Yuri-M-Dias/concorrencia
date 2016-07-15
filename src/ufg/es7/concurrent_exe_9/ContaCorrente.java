@@ -10,40 +10,41 @@ public class ContaCorrente {
 
     private Double saldo;
     private ReentrantReadWriteLock lock;
+    private Lock write;
+    private Lock read;
 
     public ContaCorrente(Double saldo) {
         this.saldo = saldo;
         this.lock = new ReentrantReadWriteLock();
+        this.write = lock.writeLock();
+        this.read = lock.readLock();
     }
 
-    public void sacar(final Double valor){
-        Lock write = lock.writeLock();
+    public void sacar(final Double valor) {
         write.lock();
-        try{
-            if(valor <= this.saldo){
+        try {
+            if (valor <= this.saldo) {
                 this.saldo -= valor;
             } else {
-                System.out.println("Não tem saldo("+ this.saldo+" para tirar: " + valor);
+                System.out.println("Não tem saldo(" + this.saldo + " para tirar: " + valor);
             }
-        }finally {
+        } finally {
             write.unlock();
         }
-        System.out.println("Sacado: "+ valor + " saldo atual: " + this.saldo);
+        System.out.println("Sacado: " + valor + " saldo atual: " + this.saldo);
     }
 
-    public void depositor(final Double valor){
-        Lock write = lock.writeLock();
+    public void depositor(final Double valor) {
         write.lock();
-        try{
+        try {
             this.saldo += valor;
-        }finally {
+        } finally {
             write.unlock();
         }
-        System.out.println("Depositado: "+ valor + " saldo atual: " + this.saldo);
+        System.out.println("Depositado: " + valor + " saldo atual: " + this.saldo);
     }
 
-    public double getSaldo(){
-        Lock read = lock.readLock();
+    public double getSaldo() {
         read.lock();
         double saldo = this.saldo;
         read.unlock();

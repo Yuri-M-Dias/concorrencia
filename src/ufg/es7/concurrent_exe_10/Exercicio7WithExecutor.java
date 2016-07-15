@@ -6,8 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Exercicio7WithExecutor {
 
-    public static int ACHOU = -1;
     private static final int MAX_ELEMS = 5000;
+    public static int ACHOU = -1;
 
     public static void main(String[] args) throws InterruptedException {
         int[] ints = new int[MAX_ELEMS];
@@ -16,7 +16,7 @@ public class Exercicio7WithExecutor {
         }
         int x = 3421;
         int resultado = parallelSearch(x, ints, 5);
-        if(resultado == -1){
+        if (resultado == -1) {
             System.out.println("Não achei esse elemento!");
             return;
         }
@@ -35,11 +35,11 @@ public class Exercicio7WithExecutor {
         return ACHOU;
     }
 
-    public static synchronized void setarValorAchado(int index){
+    public static synchronized void setarValorAchado(int index) {
         ACHOU = index;
     }
 
-    public static synchronized boolean verificaValorAchado(){
+    public static synchronized boolean verificaValorAchado() {
         return ACHOU != -1;
     }
 }
