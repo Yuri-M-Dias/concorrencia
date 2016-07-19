@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.System.*;
+
 public class Mesa {
     private static final int NUM_FILOSOFOS = 5;// ímpares bons!
     private static final int TEMPO_MAXIMO = 1000 * 10;
@@ -28,16 +30,14 @@ public class Mesa {
         }
         //Espera um tempo determinado com o programa rodando.
         Thread.sleep(TEMPO_MAXIMO);
-        System.out.println("====Chega de comilança!====");
+        out.println("====Chega de comilança!====");
         //Forçando eles a ficarem "cheios"
         listaFilosofos.forEach(filosofo -> filosofo.setCheio());
         //Espera todos terminarem
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
-        listaFilosofos.forEach(filosofo -> {
-            System.out.println("Filósofo " + filosofo + " comeu "
-                    + filosofo.getNumeroTurnos() + " vezes");
-        });
+        listaFilosofos.forEach(filosofo -> out.println("Filósofo " + filosofo + " comeu "
+                + filosofo.getNumeroTurnos() + " vezes"));
     }
 
 }

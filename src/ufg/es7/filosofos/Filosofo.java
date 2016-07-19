@@ -7,7 +7,7 @@ public class Filosofo implements Runnable {
     private boolean cheio = false;
     private Random geradorTempoAleatorio = new Random();
     private int numeroTurnos;
-    private int id;
+    private final int id;
     private Garfo garfoEsquerda;
     private Garfo garfoDireita;
 
@@ -47,12 +47,11 @@ public class Filosofo implements Runnable {
         Thread.sleep(geradorTempoAleatorio.nextInt(1000));
     }
 
+    /**
+     * Seta o filósofo como cheio, para parar o loop.
+     */
     public void setCheio() {
         cheio = true;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getNumeroTurnos() {

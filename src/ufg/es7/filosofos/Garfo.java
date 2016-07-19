@@ -5,9 +5,14 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Garfo {
+
     private Lock chave = new ReentrantLock();
+
     private final int id;
 
+    /**
+     * @param id identificador para facilitar as mensagens de resultado
+     */
     public Garfo(int id) {
         this.id = id;
     }
